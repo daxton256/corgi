@@ -21,7 +21,7 @@ def texttoimg(strin):
     for y in range(res):
         for x in range(res):
             px = rv[c] if c < len(rv) else 0
-            pm[x,0] = (px, px, px)
+            pm[x,y] = (px, px, px)
             c+=1
     im = im.resize((res,res), resample=PIL.Image.BOX)
 
