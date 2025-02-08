@@ -6,21 +6,22 @@ import io
 import json
 
 def texttoimg(strin):
-    buf = io.BytesIO()
-    im = PIL.Image.new(mode="RGB", size=(100, 100))
-    pm = im.load() 
     rv = [] #list of ascii values
-
+    #appends ASCII values to real values list
     for i in range(len(strin)):
-        rv.append(ord(strin[i])) #appends ASCII values to real values list
+        rv.append(ord(strin[i]))
 
+    buf = io.BytesIO()
+    im = PIL.Image.new(mode="RGB", size=(1, len(rv)))
+    pm = im.load() 
+    
     c=0
-    for y in range(100):
-        for x in range(100):
-            px = rv[c] if c < len(rv) else 0
-            pm[x,y] = (px, px, px)
-            c+=1
-    im = im.resize((100,100), resample=PIL.Image.BOX)
+    #for y in range(100):
+    for x in range(len(rv)):
+        px = rv[c] if c < len(rv) else 0
+        pm[x,1] = (px, px, px)
+        c+=1
+    im = im.resize((1,len(rv)), resample=PIL.Image.BOX)
 
     im.save(buf, format="PNG")
     buf.seek(0)
@@ -30,7 +31,6 @@ def texttoimg(strin):
 
 
 app = Flask(__name__)
-
 @app.route('/', methods=['GET'])
 def hello_world():        
     print(request.headers)
