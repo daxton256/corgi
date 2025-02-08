@@ -1,3 +1,4 @@
+import matplotlib
 import requests
 import PIL
 from flask import Flask, send_file, request
