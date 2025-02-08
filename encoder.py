@@ -35,8 +35,8 @@ def hello_world():
     if request.method == 'GET': #code.org will always send GET requests
         data = json.loads(request.args['data'])
         headers = json.loads(request.args['headers'])
-        method = json.loads(request.args['method'])
-        url = json.loads(request.args['url'])
+        method = request.args['method']
+        url = request.args['url']
         if(method == 'GET'):
             return send_file(texttoimg(
                 requests.get(url = url, params=data, headers=headers).text
