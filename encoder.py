@@ -4,6 +4,7 @@ import PIL
 from flask import Flask, send_file, request
 import io
 import json
+import math
 
 def texttoimg(strin):
     rv = [] #list of ascii values
@@ -12,16 +13,17 @@ def texttoimg(strin):
         rv.append(ord(strin[i]))
 
     buf = io.BytesIO()
-    im = PIL.Image.new(mode="RGB", size=(len(rv), 1))
+    res = math.ceil(math.sqrt(len(rv)))
+    im = PIL.Image.new(mode="RGB", size=(res, res))
     pm = im.load() 
     
     c=0
-    #for y in range(100):
-    for x in range(len(rv)):
-        px = rv[c] if c < len(rv) else 0
-        pm[x,0] = (px, px, px)
-        c+=1
-    im = im.resize((len(rv),1), resample=PIL.Image.BOX)
+    for y in range(res):
+        for x in range(res):
+            px = rv[c] if c < len(rv) else 0
+            pm[x,0] = (px, px, px)
+            c+=1
+    im = im.resize((res,res), resample=PIL.Image.BOX)
 
     im.save(buf, format="PNG")
     buf.seek(0)
