@@ -33,6 +33,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():        
+    print(request.headers)
     if request.method == 'GET': #code.org will always send GET requests
         data = json.loads(request.args['data'])
         headers = json.loads(request.args['headers'])
