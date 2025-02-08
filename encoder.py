@@ -36,10 +36,15 @@ def hello_world():
         data = json.loads(request.args['data'])
         headers = json.loads(request.args['headers'])
         method = json.loads(request.args['method'])
+        url = json.loads(request.args['url'])
         if(method == 'GET'):
             return send_file(texttoimg(
-                requests.get()
+                requests.get(url = url, params=data, headers=headers).text
+            ), download_name="image.png")
+        if(method == 'POST'):
+            return send_file(texttoimg(
+                requests.post(url = url, data=data, headers=headers).text
             ), download_name="image.png")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5123)
