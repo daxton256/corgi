@@ -3,6 +3,7 @@
 A program that encodes HTTP requests into images. This program was originally created to circumvent the restrictions and add REST data to HTTP requests in code.org.
 
 ## Use in code.org
+
 Coming soon.
 
 ## Server Setup
