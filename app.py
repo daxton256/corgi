@@ -50,5 +50,5 @@ def hello_world():
                 requests.post(url = url, data=data, headers=headers).text
             ), download_name="image.png")
 
-if __name__ == '__main__':
-    app.run(port=5123)
+#if __name__ == '__main__':
+    #app.run(port=5123)
