@@ -6,8 +6,8 @@ A program that encodes HTTP requests into images. This program was originally cr
 
 Install the needed packages
 
-            pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Run the server (Windows)
 
-            start.bat
+    start.bat
