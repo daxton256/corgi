@@ -44,17 +44,14 @@ app = Flask(__name__)
 def hello_world():        
     print(request.headers)
     if request.method == 'GET': #code.org will always send GET requests
-        data = json.loads(request.args['data'])
-        headers = json.loads(request.args['headers'])
-        method = request.args['method']
-        url = request.args['url']
-        if(method == 'GET'):
+        data = json.loads(bytes.fromhex(request.args['data']).decode("ASCII"))
+        if(data["method"] == 'GET'):
             return send_file(texttoimg(
-                requests.get(url = url, params=data, headers=headers).text
+                requests.get(url = data["url"], params=data["data"], headers=data["headers"]).text
             ), download_name="image.png")
-        if(method == 'POST'):
+        if(data["method"] == 'POST'):
             return send_file(texttoimg(
-                requests.post(url = url, data=data, headers=headers).text
+                requests.post(url = data["url"], data=data["data"], headers=data["headers"]).text
             ), download_name="image.png")
 
 #if __name__ == '__main__':
