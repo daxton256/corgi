@@ -2,6 +2,12 @@
 
 A program that encodes HTTP requests into images. This program was originally created to circumvent the restrictions and add REST data to HTTP requests in code.org.
 
+## Issues
+
+Responses must be less than 585 KB, if any response exceeds this limit, the server will send an encoded message reading "response too large."
+
+Requests are slow and take around ~2000ms to process.
+
 ## Use in code.org
 
 Coming soon.

@@ -9,22 +9,26 @@ import math
 def texttoimg(strin):
     rv = [] #list of ascii values
     #appends ASCII values to real values list
-    for i in range(len(strin)):
-        rv.append(ord(strin[i]))
+    if(len(strin) < 585224):
+        for i in range(len(strin)):
+            rv.append(ord(strin[i]))
+    else:
+        for i in range(len("response too large.")):
+            rv.append(ord("response too large."[i])) #there is a better way to do this, but i have not optimised yet.
 
     buf = io.BytesIO()
-    res = math.ceil(math.sqrt(len(rv)))
+    res = 765
     im = PIL.Image.new(mode="RGB", size=(res, res))
     pm = im.load() 
-    
+
     c=0
     for y in range(res):
-        for x in range(res):
+        for x in range(res-1):
             if(c < len(rv)):
                 px = rv[c]
-                pm[x,y] = (px, px, px)
+                pm[x+1,y] = (px, px, px)
             else:
-                pm[x,y] = (0,0,255)
+                pm[x+1,y] = (0,0,255) #blue end pixels
             c+=1
     im = im.resize((res,res), resample=PIL.Image.BOX)
 
