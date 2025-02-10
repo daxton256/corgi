@@ -42,6 +42,7 @@ def texttoimg(strin):
 app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def hello_world():        
+    print(request.args['data'])
     print(request.headers)
     if request.method == 'GET': #code.org will always send GET requests
         data = json.loads(bytes.fromhex(request.args['data']).decode("ASCII"))
