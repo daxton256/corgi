@@ -8,6 +8,8 @@ Responses must be less than 585 KB, if any response exceeds this limit, the serv
 
 Requests are slow and take around ~2000ms to process.
 
+If a request takes longer than ~2000ms code.org's media fetch server will automatically timeout the request and not process it.
+
 ## Use in code.org
 
 Coming soon.
