@@ -30,7 +30,7 @@ def texttoimg(text, res = 32):
     buf.seek(0)
     return buf
 
-def sestoimg(sesID, res = 32):
+def sestoimg(sesID, res = 128):
     buf = io.BytesIO()
     im = PIL.Image.new(mode="RGB", size=(res, res))
     pm = im.load() 
@@ -86,7 +86,7 @@ def packetinit():
         threading.Thread(target=start_request, args=({"url": data["url"], "sesID": pid, "data": data["data"], "headers": data["headers"], "method": data["method"]},)).start()
         return send_file(texttoimg( #sending info to server
             json.dumps({
-                "sysres": 32,
+                "sysres": 128,
                 "pid": pid
             })
         ), download_name="image.png")
