@@ -96,8 +96,3 @@ def packetinit():
 def packetcheck():        
     if request.method == 'GET': 
         return send_file(sestoimg(request.args['sesID']), download_name="image.png")
-
-@app.route("/dlUA", methods=["GET"])
-def dlua():
-    data = json.loads(bytes.fromhex(request.args['data']).decode("ASCII"))
-    return send_file(requests.get(data["url"], headers=data["headers"]).content, download_name=f"image.{data['type']}")
