@@ -99,4 +99,5 @@ def packetcheck():
 
 @app.route("/dlUA", methods=["GET"])
 def dlua():
-    return send_file(requests.get(request.args['url']).content, download_name=f"image.{request.args['type']}")
+    data = json.loads(bytes.fromhex(request.args['data']).decode("ASCII"))
+    return send_file(requests.get(data["url"]).content, download_name=f"image.{data['type']}")
