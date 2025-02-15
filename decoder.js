@@ -1,3 +1,7 @@
+
+//DESIGNED FOR CODE.ORG DOM, NOT PLAIN HTML.
+//https://github.com/daxton256/corgi
+
 // a function that generates a random string
 // length {int} - how long the random string should be
 // return {string} - the random string
